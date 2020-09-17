@@ -1,0 +1,83 @@
+{% extends "admin/base.html.twig" %}
+
+{% block sidebar %}
+{% if app.request.get('page') == "mpandray" %}
+{% include "admin/common/left-sidebar.html.twig" with { active: "kristiana", _active: 'mpandray' } %}
+{% else %}
+{% include "admin/common/left-sidebar.html.twig" with { active: "kristiana", _active: 'tsy-mpandray' } %}
+{% endif %}
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card card-shadow">
+            <div class="card-block">
+                <div class="text-center">
+                    <a class="avatar avatar-lg" href="javascript:void(0)" style="width: 130px;margin-bottom: 10px;">
+                        <img src="{{asset('admin/global/portraits/5.jpg')}}" alt="...">
+                    </a>
+                    <h4 class="profile-user">{{kristiana.anarana}} {{kristiana.fanampiny}}</h4>
+                    <p class="profile-job">{{kristiana.finday}}</p>
+                </div>
+                <p>
+                    <ul class="list-group list-group-gap">
+                        {% if kristiana.mailaka %}
+                            <li class="list-group-item bg-blue-grey-100">
+                                <i class="icon wb-envelope" aria-hidden="true"></i> {{kristiana.mailaka}}
+                            </li>
+                        {% endif %}
+                        {% if kristiana.adiresy %}
+                            <li class="list-group-item bg-blue-grey-100">
+                                <i class="icon wb-map" aria-hidden="true"></i> {{kristiana.adiresy}}
+                            </li>
+                        {% endif %}
+                        {% if kristiana.mpandray %}
+                            <li class="list-group-item bg-blue-grey-100">
+                                <i class="icon wb-check-mini" aria-hidden="true"></i> Mpandray 
+                            </li>
+                            <li class="list-group-item bg-blue-grey-100">
+                                <i class="icon wb-calendar" aria-hidden="true"></i> {{kristiana.datyNandraisana|date("d-m-Y")}} 
+                            </li>
+                        {% else %}
+                            <li class="list-group-item bg-blue-grey-100">
+                                <i class="icon wb-close-mini" aria-hidden="true"></i>Tsy mpandray 
+                            </li>
+                        {% endif %}
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <!-- End Page Widget -->
+    </div>
+
+    <div class="col-lg-8">
+        <!-- Panel -->
+        <div class="panel">
+            <div class="panel-body nav-tabs-animate nav-tabs-horizontal" data-plugin="tabs">
+                <ul class="nav nav-tabs nav-tabs-line" role="tablist">
+                    <li class="nav-item" role="presentation"><a class="active nav-link" data-toggle="tab"
+                            href="#activities" aria-controls="activities" role="tab">Fikambanana</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#profile"
+                            aria-controls="profile" role="tab">Adidy</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#messages"
+                            aria-controls="messages" role="tab">Kitapo iombonana</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active animation-slide-left" id="activities" role="tabpanel">
+                    </div>
+
+                    <div class="tab-pane animation-slide-left" id="profile" role="tabpanel">
+
+                    </div>
+
+                    <div class="tab-pane animation-slide-left" id="messages" role="tabpanel">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

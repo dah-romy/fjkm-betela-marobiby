@@ -1,0 +1,155 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}
+<title>Kristiana | FJKM Betela Marobiby</title>
+{% endblock %}
+
+{% block sidebar %}
+    {% if app.request.get('page') == "mpandray" %}
+        {% include "admin/common/left-sidebar.html.twig" with { active: "kristiana", _active: 'mpandray' } %}
+    {% else %}
+        {% include "admin/common/left-sidebar.html.twig" with { active: "kristiana", _active: 'tsy-mpandray' } %}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+<div class="panel panel-bordered">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            {% if editMode %}
+            Hanavao kristiana
+            {% else %}
+            Kristiana vaovao
+            {% endif %}
+        </h3>
+        <div class="panel-actions">
+            <a class="panel-action icon wb-expand" data-toggle="panel-fullscreen" aria-hidden="true"></a>
+            <a class="panel-action icon wb-close" href="{{path('kristiana.'~ app.request.get('page'))}}" aria-hidden="true"></a>
+        </div>
+    </div>
+    <div class="panel-body">
+        {{form_start(form)}}
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Anarana*: </label>
+            <div class="col-md-9">
+                {{form_widget(form.anarana,{'attr':{
+                    'class': "form-control",
+                    'placeholder': 'Anarana',
+                    'autocomplete': "off"
+                }})}}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Fanampiny*: </label>
+            <div class="col-md-9">
+                {{form_widget(form.fanampiny,{'attr':{
+                    'class': "form-control",
+                    'placeholder': 'Fanampiny',
+                    'autocomplete': "off"
+                }})}}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Sokajy*: </label>
+            <div class="col-md-9">
+                {{form_widget(form.sokajy,{'attr':{
+                    'class': "form-control",
+                    'placeholder': 'Sokajy',
+                    'autocomplete': "off",
+                    'data-plugin':"selectpicker"
+                }})}}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Finday: </label>
+            <div class="col-md-9">
+                {{form_widget(form.finday,{'attr':{
+                    'class': "form-control",
+                    'placeholder': 'Finday',
+                    'autocomplete': "off",
+                    'data-plugin':"formatter" ,
+                    'data-pattern':"+261 [[99]]-[[99]]-[[999]]-[[99]]"
+                }})}}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Mailaka: </label>
+            <div class="col-md-9">
+                {{form_widget(form.mailaka,{'attr':{
+                    'class': "form-control",
+                    'placeholder': 'Mailaka',
+                    'autocomplete': "off"
+                }})}}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Asa: </label>
+            <div class="col-md-9">
+                {{form_widget(form.asa,{'attr':{
+                    'class': "form-control",
+                    'placeholder': 'Asa',
+                    'autocomplete': "off"
+                }})}}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Adiresy: </label>
+            <div class="col-md-9">
+                {{form_widget(form.adiresy,{'attr':{
+                    'class': "form-control",
+                    'placeholder': 'Adiresy',
+                    'autocomplete': "off"
+                }})}}
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label">Daty nandraisana: </label>
+            <div class="col-md-9">
+                {% if kristiana.datyNandraisana != null %}
+                <input type="text" id="daty-nandraisana" value="{{kristiana.datyNandraisana|date("m/d/Y")}}"
+                    class="form-control" name="daty-nandraisana" data-plugin="datepicker">
+                {% else %}
+                <input type="text" id="daty-nandraisana" class="form-control" name="daty-nandraisana"
+                    data-plugin="datepicker">
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group row">
+            <legend class="col-md-3 col-form-legend"></legend>
+            <div class="col-md-9 d-flex">
+                <div class="form-group">
+                    <div class="checkbox-custom checkbox-default ">
+                        {{form_widget(form.mpandray)}}
+                        <label for="">Mpandray</label>
+                    </div>
+                </div>
+                <div class="form-group ml-auto">
+                    <div class="checkbox-custom checkbox-default">
+                        {{form_widget(form.maty)}}
+                        <label for="">Maty</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-9 offset-md-3">
+                <input type="submit" value="Tehirizo" class="btn btn-primary">
+                <button type="reset" class="btn btn-default btn-outline">Fafaina daholo</button>
+            </div>
+        </div>
+        {{form_end(form)}}
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+    $("#daty-nandraisana").on("change", function () {
+        if ($("#daty-nandraisana").val() == "") {
+            $("#kristiana_mpandray").prop("checked", false);
+        } else {
+            $("#kristiana_mpandray").prop("checked", true);
+        }
+    });
+</script>
+{% endblock %}
