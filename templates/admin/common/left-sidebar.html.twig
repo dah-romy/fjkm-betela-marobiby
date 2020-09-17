@@ -13,23 +13,15 @@
                 <span class="site-menu-arrow"></span>
             </a>
             <ul class="site-menu-sub">
-                <li class="site-menu-item has-sub {% if active == "kristiana" %} active open {% endif %}">
-                    <a href="javascript:void(0)">
-                        <span class="site-menu-title">Mikasika ny kristiana</span>
-                        <span class="site-menu-arrow"></span>
+                <li class="site-menu-item {% if _active == "tsy-mpandray" %} active {% endif %}">
+                    <a class="animsition-link" href="{{path("kristiana.tsy-mpandray")}}">
+                        <span class="site-menu-title">Lisitry ny tsy mpandray</span>
                     </a>
-                    <ul class="site-menu-sub">
-                        <li class="site-menu-item {% if _active == "tsy-mpandray" %} active {% endif %}">
-                            <a class="animsition-link" href="{{path("kristiana.tsy-mpandray")}}">
-                                <span class="site-menu-title">Lisitry ny tsy mpandray</span>
-                            </a>
-                        </li>
-                        <li class="site-menu-item {% if _active == "mpandray" %} active open {% endif %}">
-                            <a class="animsition-link" href="{{path("kristiana.mpandray")}}">
-                                <span class="site-menu-title">Lisitry ny mpandray</span>
-                            </a>
-                        </li>
-                    </ul>
+                </li>
+                <li class="site-menu-item {% if _active == "mpandray" %} active open {% endif %}">
+                    <a class="animsition-link" href="{{path("kristiana.mpandray")}}">
+                        <span class="site-menu-title">Lisitry ny mpandray</span>
+                    </a>
                 </li>
             </ul>
         </li>
