@@ -4,8 +4,12 @@ namespace App\Controller\Admin;
 
 use App\Utils\Utils;
 use App\Entity\Kristiana;
+use App\Entity\Sampana;
+use App\Entity\SampanaKristiana;
+use App\Entity\Toerana;
 use App\Form\KristianaType;
 use App\Repository\KristianaRepository;
+use App\Repository\SampanaKristianaRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -217,5 +221,33 @@ class KristianaController extends AbstractController
             'title' => 'Momba ny kristiana',
             'kristiana' => $kristiana
         ]);
+    }
+
+    /**
+     * @Route("/sampana/{id}", name="kristiana.sampana.lisitra", options={"expose":true})
+     */
+    public function sampana(Kristiana $kristiana, EntityManagerInterface $manager){
+        
+        $sampanaKristianas = $kristiana->getSampanaKristianas();
+
+        $data['data'] = [];
+
+        foreach ($sampanaKristianas as $key => $sampanaKristiana) {
+
+            $action = $this->renderView('admin/kristiana/mombamomba/common/button.html.twig', [
+                'sampana' => $sampanaKristiana
+            ]);
+
+            $sampana = $manager->getRepository(Sampana::class)->findOneBy(['id' => $sampanaKristiana->getSampana()->getId()]);
+            $toerana = $manager->getRepository(Toerana::class)->findOneBy(['id' => $sampanaKristiana->getToerana()->getId()]);
+
+            $data['data'][] = [
+                'sampana' => $sampana->getAnarana(),
+                'toerana' => $toerana->getAnarana(),
+                'action' => $action
+            ];
+        }
+
+        return new JsonResponse($data, Response::HTTP_OK);
     }
 }

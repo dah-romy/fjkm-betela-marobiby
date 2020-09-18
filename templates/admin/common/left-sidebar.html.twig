@@ -25,6 +25,25 @@
                 </li>
             </ul>
         </li>
+        <li class="site-menu-item has-sub {% if active == "sampana" %} active open {% endif %}">
+            <a href="javascript:void(0)">
+                <i class="site-menu-icon wb-grid-4" aria-hidden="true"></i>
+                <span class="site-menu-title">Sampana</span>
+                <span class="site-menu-arrow"></span>
+            </a>
+            <ul class="site-menu-sub">
+                <li class="site-menu-item {% if _active == "sampana" %} active {% endif %}">
+                    <a class="animsition-link" href="{{path("sampana.lisitra.index")}}">
+                        <span class="site-menu-title">Lisitry ny sampana</span>
+                    </a>
+                </li>
+                <li class="site-menu-item {% if _active == "fotoana" %} active open {% endif %}">
+                    <a class="animsition-link" href="{{path("kristiana.mpandray")}}">
+                        <span class="site-menu-title">Fandaharam-potoana</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
     </ul>
 </div>
 <div class="site-gridmenu">

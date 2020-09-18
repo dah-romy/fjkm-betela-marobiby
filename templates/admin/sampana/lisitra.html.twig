@@ -1,31 +1,30 @@
 {% extends "admin/base.html.twig" %}
 
 {% block title %}
-<title>Kristiana | FJKM Betela Marobiby</title>
+<title>Sampana | FJKM Betela Marobiby</title>
 {% endblock %}
 
 {% block sidebar %}
-    {% include "admin/common/left-sidebar.html.twig" with { active: "kristiana", _active: 'mpandray' } %}
+    {% include "admin/common/left-sidebar.html.twig" with { active: "sampana", _active: 'lisitra' } %}
 {% endblock %}
 
 {% block body %}
 <div class="panel panel-bordered">
     <div class="panel-heading">
-        <h3 class="panel-title">Lisitry ny mpandray</h3>
+        <h3 class="panel-title">Lisitry ny sampana</h3>
         <div class="panel-actions">
             <a class="panel-action icon wb-expand" data-toggle="panel-fullscreen" aria-hidden="true"></a>
-            <a class="panel-action icon wb-plus" href="{{path('kristiana.vaovao', {'page': 'mpandray'})}}"
+            <a class="panel-action icon wb-plus" href="{{path('sampana.vaovao')}}"
                 aria-hidden="true"></a>
         </div>
     </div>
     <div class="panel-body">
-        <table id="mpandray-datatable" class="table table-bordered table-striped">
+        <table id="sampana-datatable" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Kaody</th>
+                    <th>ID</th>
                     <th>Anarana</th>
-                    <th>Fanampiny</th>
-                    <th>Sokajy</th>
+                    <th>Fanafohizana</th>
                     <th class="" style="width: 11%;">#</th>
                 </tr>
             </thead>
@@ -33,10 +32,9 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <th>Kaody</th>
+                    <th>ID</th>
                     <th>Anarana</th>
-                    <th>Fanampiny</th>
-                    <th>Sokajy</th>
+                    <th>Fanafohizana</th>
                     <th style="width: 11%;">#</th>
                 </tr>
             </tfoot>
@@ -48,9 +46,9 @@
 {% block js %}
 <script>
     $(document).ready(function () {
-        $("#mpandray-datatable").DataTable();
-        list("kristiana.lisitra", "#mpandray-datatable", "mpandray")
-        del("kristiana.fafaina", ".btnDeleteKristiana", "#mpandray-datatable", '#');
+        $("#sampana-datatable").DataTable();
+        list("sampana.lisitra", "#sampana-datatable", "#")
+        del("sampana.fafaina", ".btnDeleteSampana", "#sampana-datatable", '#');
     })
 </script>
 {% endblock %}

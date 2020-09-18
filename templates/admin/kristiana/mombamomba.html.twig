@@ -23,26 +23,27 @@
                 <p>
                     <ul class="list-group list-group-gap">
                         {% if kristiana.mailaka %}
-                            <li class="list-group-item bg-blue-grey-100">
-                                <i class="icon wb-envelope" aria-hidden="true"></i> {{kristiana.mailaka}}
-                            </li>
+                        <li class="list-group-item bg-blue-grey-100">
+                            <i class="icon wb-envelope" aria-hidden="true"></i> {{kristiana.mailaka}}
+                        </li>
                         {% endif %}
                         {% if kristiana.adiresy %}
-                            <li class="list-group-item bg-blue-grey-100">
-                                <i class="icon wb-map" aria-hidden="true"></i> {{kristiana.adiresy}}
-                            </li>
+                        <li class="list-group-item bg-blue-grey-100">
+                            <i class="icon wb-map" aria-hidden="true"></i> {{kristiana.adiresy}}
+                        </li>
                         {% endif %}
                         {% if kristiana.mpandray %}
-                            <li class="list-group-item bg-blue-grey-100">
-                                <i class="icon wb-check-mini" aria-hidden="true"></i> Mpandray 
-                            </li>
-                            <li class="list-group-item bg-blue-grey-100">
-                                <i class="icon wb-calendar" aria-hidden="true"></i> {{kristiana.datyNandraisana|date("d-m-Y")}} 
-                            </li>
+                        <li class="list-group-item bg-blue-grey-100">
+                            <i class="icon wb-check-mini" aria-hidden="true"></i> Mpandray
+                        </li>
+                        <li class="list-group-item bg-blue-grey-100">
+                            <i class="icon wb-calendar" aria-hidden="true"></i>
+                            {{kristiana.datyNandraisana|date("d-m-Y")}}
+                        </li>
                         {% else %}
-                            <li class="list-group-item bg-blue-grey-100">
-                                <i class="icon wb-close-mini" aria-hidden="true"></i>Tsy mpandray 
-                            </li>
+                        <li class="list-group-item bg-blue-grey-100">
+                            <i class="icon wb-close-mini" aria-hidden="true"></i>Tsy mpandray
+                        </li>
                         {% endif %}
                     </ul>
                 </p>
@@ -51,33 +52,51 @@
         <!-- End Page Widget -->
     </div>
 
+    <div class="modal fade" id="sampanaModal" aria-hidden="true" aria-labelledby="sampanaModal"
+        role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-simple modal-sidebar modal-sm">
+            <div class="modal-content">
+                
+            </div>
+        </div>
+    </div>
+
     <div class="col-lg-8">
         <!-- Panel -->
         <div class="panel">
             <div class="panel-body nav-tabs-animate nav-tabs-horizontal" data-plugin="tabs">
                 <ul class="nav nav-tabs nav-tabs-line" role="tablist">
                     <li class="nav-item" role="presentation"><a class="active nav-link" data-toggle="tab"
-                            href="#activities" aria-controls="activities" role="tab">Fikambanana</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#profile"
+                            href="#sampana" aria-controls="activities" role="tab">Sampana</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#adidy"
                             aria-controls="profile" role="tab">Adidy</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#messages"
+                    <li class="nav-item" role="presentation"><a class="nav-link" data-toggle="tab" href="#kitapo"
                             aria-controls="messages" role="tab">Kitapo iombonana</a></li>
                 </ul>
 
                 <div class="tab-content">
-                    <div class="tab-pane active animation-slide-left" id="activities" role="tabpanel">
+                    <div class="tab-pane active animation-slide-left" id="sampana" role="tabpanel">
+                        {% include "admin/kristiana/mombamomba/sampana.html.twig" %}
                     </div>
 
-                    <div class="tab-pane animation-slide-left" id="profile" role="tabpanel">
-
+                    <div class="tab-pane animation-slide-left" id="adidy" role="tabpanel">
                     </div>
 
-                    <div class="tab-pane animation-slide-left" id="messages" role="tabpanel">
-
+                    <div class="tab-pane animation-slide-left" id="kitapo" role="tabpanel">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block js %}
+<script>
+    $(document).ready(function () {
+        $("#sampana-datatable").DataTable();
+        list("kristiana.sampana.lisitra", "#sampana-datatable", "#", "{{kristiana.id}}")
+        btnAdd(".btnSampana", "#sampanaModal", "kristiana.sampana.hanampy", "{{kristiana.id}}")
+    })
+</script>
 {% endblock %}

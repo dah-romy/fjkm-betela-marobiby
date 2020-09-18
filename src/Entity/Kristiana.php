@@ -75,10 +75,17 @@ class Kristiana
      */
     private $adiresy;
 
+    /**
+     * @ORM\OneToMany(targetEntity=SampanaKristiana::class, mappedBy="kristiana")
+     */
+    private $sampanaKristianas;
+
+
     public function __construct()
     {
         $this->mpikambanas = new ArrayCollection();
         $this->adidys = new ArrayCollection();
+        $this->sampanaKristianas = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -219,4 +226,34 @@ class Kristiana
         return $this;
     }
 
+    /**
+     * @return Collection|SampanaKristiana[]
+     */
+    public function getSampanaKristianas(): Collection
+    {
+        return $this->sampanaKristianas;
+    }
+
+    public function addSampanaKristiana(SampanaKristiana $sampanaKristiana): self
+    {
+        if (!$this->sampanaKristianas->contains($sampanaKristiana)) {
+            $this->sampanaKristianas[] = $sampanaKristiana;
+            $sampanaKristiana->setKristiana($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSampanaKristiana(SampanaKristiana $sampanaKristiana): self
+    {
+        if ($this->sampanaKristianas->contains($sampanaKristiana)) {
+            $this->sampanaKristianas->removeElement($sampanaKristiana);
+            // set the owning side to null (unless already changed)
+            if ($sampanaKristiana->getKristiana() === $this) {
+                $sampanaKristiana->setKristiana(null);
+            }
+        }
+
+        return $this;
+    }
 }

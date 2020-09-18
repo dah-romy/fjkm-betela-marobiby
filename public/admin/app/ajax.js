@@ -1,10 +1,10 @@
 $(document).ready(function () {
-    
 })
 
-function list(route, table, type) {
+function list(route, table, type, id) {
     var url = Routing.generate(route, {
-        'type': type
+        'type': type,
+        'id': id
     })
     var col = []
     $.ajax({
@@ -73,5 +73,29 @@ function del(route, btn, dataTable) {
 
                 }
             });
+    });
+}
+
+function btnAdd(btnAdd, idModal, route, id) {
+    $(document).on("click", btnAdd, function (e) {
+        e.preventDefault()
+        showModal(idModal, route, id);
+    })
+}
+
+function showModal(idModal, route, id) {
+    $(idModal).one('shown.bs.modal', async function (e) {
+        e.preventDefault()
+
+        var url = Routing.generate(route, {
+            'id': id
+        })
+
+        var modal = $(this);
+        axios.get(url)
+            .then(response => {
+                modal.find('.modal-content').html(response.data);
+                $('input:text:visible:first').focus();
+            })
     });
 }
