@@ -30,13 +30,14 @@ class Toerana
     private $sampanas;
 
     /**
-     * @ORM\OneToOne(targetEntity=SampanaKristiana::class, mappedBy="toerana", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=SampanaKristiana::class, mappedBy="toerana")
      */
-    private $sampanaKristiana;
+    private $sampanaKristianas;
 
     public function __construct()
     {
         $this->sampanas = new ArrayCollection();
+        $this->sampanaKristianas = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -82,22 +83,34 @@ class Toerana
         return $this;
     }
 
-    public function getSampanaKristiana(): ?SampanaKristiana
+    /**
+     * @return Collection|SampanaKristiana[]
+     */
+    public function getSampanaKristianas(): Collection
     {
-        return $this->sampanaKristiana;
+        return $this->sampanaKristianas;
     }
 
-    public function setSampanaKristiana(?SampanaKristiana $sampanaKristiana): self
+    public function addSampanaKristiana(SampanaKristiana $sampanaKristiana): self
     {
-        $this->sampanaKristiana = $sampanaKristiana;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newToerana = null === $sampanaKristiana ? null : $this;
-        if ($sampanaKristiana->getToerana() !== $newToerana) {
-            $sampanaKristiana->setToerana($newToerana);
+        if (!$this->sampanaKristianas->contains($sampanaKristiana)) {
+            $this->sampanaKristianas[] = $sampanaKristiana;
+            $sampanaKristiana->setToerana($this);
         }
 
         return $this;
     }
 
+    public function removeSampanaKristiana(SampanaKristiana $sampanaKristiana): self
+    {
+        if ($this->sampanaKristianas->contains($sampanaKristiana)) {
+            $this->sampanaKristianas->removeElement($sampanaKristiana);
+            // set the owning side to null (unless already changed)
+            if ($sampanaKristiana->getToerana() === $this) {
+                $sampanaKristiana->setToerana(null);
+            }
+        }
+
+        return $this;
+    }
 }

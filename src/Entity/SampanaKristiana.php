@@ -23,12 +23,12 @@ class SampanaKristiana
     private $kristiana;
 
     /**
-     * @ORM\OneToOne(targetEntity=Sampana::class, inversedBy="sampanaKristiana", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Sampana::class, inversedBy="sampanaKristianas")
      */
     private $sampana;
 
     /**
-     * @ORM\OneToOne(targetEntity=Toerana::class, inversedBy="sampanaKristiana", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Toerana::class, inversedBy="sampanaKristianas")
      */
     private $toerana;
 
@@ -72,4 +72,5 @@ class SampanaKristiana
 
         return $this;
     }
+
 }

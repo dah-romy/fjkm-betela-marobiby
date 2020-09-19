@@ -4,7 +4,17 @@
   </button>
   <h4 class="modal-title">Hanampy sampana</h4>
 </div>
-{{form_start(form)}}
+{% if editMode %}
+{{form_start(form,{'attr':{
+  'id':"sampanaKristianaForm",
+  'class': sampana.id
+}})}}
+{% else %}
+{{form_start(form,{'attr':{
+  'id':"sampanaKristianaForm",
+  'class': ''
+}})}}
+{% endif %}
 <div class="modal-body">
   <div class="form-group">
     <label class="form-control-label" for="inputBasicEmail">Sampana *</label>

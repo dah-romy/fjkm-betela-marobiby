@@ -97,6 +97,9 @@
         $("#sampana-datatable").DataTable();
         list("kristiana.sampana.lisitra", "#sampana-datatable", "#", "{{kristiana.id}}")
         btnAdd(".btnSampana", "#sampanaModal", "kristiana.sampana.hanampy", "{{kristiana.id}}")
+        btnAdd(".btnEditSampana", "#sampanaModal", "kristiana.sampana.hanampy", "{{kristiana.id}}")
+        add("kristiana.sampana.hanampy", "#sampanaKristianaForm", "#sampanaModal", "#sampana-datatable", "{{kristiana.id}}")
+        del("kristiana.sampana.hamafa", ".btnDeleteSampanaKristiana", "#sampana-datatable")
     })
 </script>
 {% endblock %}
