@@ -1,0 +1,54 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}
+<title>Fikambanana | FJKM Betela Marobiby</title>
+{% endblock %}
+
+{% block sidebar %}
+    {% include "admin/common/left-sidebar.html.twig" with { active: "fikambanana", _active: 'lisitra' } %}
+{% endblock %}
+
+{% block body %}
+<div class="panel panel-bordered">
+    <div class="panel-heading">
+        <h3 class="panel-title">Lisitry ny fikambanana</h3>
+        <div class="panel-actions">
+            <a class="panel-action icon wb-expand" data-toggle="panel-fullscreen" aria-hidden="true"></a>
+            <a class="panel-action icon wb-plus" href="{{path('fikambanana.vaovao')}}"
+                aria-hidden="true"></a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <table id="fikambanana-datatable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Anarana</th>
+                    <th>Fanafohizana</th>
+                    <th class="" style="width: 11%;">#</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>ID</th>
+                    <th>Anarana</th>
+                    <th>Fanafohizana</th>
+                    <th style="width: 11%;">#</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+    $(document).ready(function () {
+        $("#fikambanana-datatable").DataTable();
+        list("fikambanana.lisitra", "#fikambanana-datatable", "#")
+        del("fikambanana.fafaina", ".btnDeleteFikambanana", "#fikambanana-datatable", '#');
+    })
+</script>
+{% endblock %}

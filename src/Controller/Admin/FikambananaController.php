@@ -15,9 +15,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("admin/sampana")
+ * @Route("admin/fikambanana")
  */
-class SampanaController extends AbstractController
+class FikambananaController extends AbstractController
 {
 
   protected $breadcrumbs;
@@ -28,32 +28,32 @@ class SampanaController extends AbstractController
   }
 
   /**
-   * @Route("/lisitra", name="sampana.lisitra.index")
+   * @Route("/lisitra", name="fikambanana.lisitra.index")
    *
    * @return void
    */
-  public function sampana(){
+  public function fikambanana(){
 
     $this->breadcrumbs->prependRouteItem("Fandraisana", "admin.index");
-    $this->breadcrumbs->addItem("Sampana");
+    $this->breadcrumbs->addItem("Fikambanana");
     $this->breadcrumbs->addItem("Lisitra");
 
-    return $this->render('admin/sampana/lisitra.html.twig', [
+    return $this->render('admin/fikambanana/lisitra.html.twig', [
       "title" => "Lisitry ny sampana"
     ]);
   }
 
   /**
-  * @Route("/lisitra-sampana", name="sampana.lisitra", options={"expose":true})
+  * @Route("/lisitra-fikambanana", name="fikambanana.lisitra", options={"expose":true})
   */
   public function lisitra(SampanaRepository $repo, Request $request){
-    $sampanas = $repo->findBy(["sokajy" => "sampana"]);
+    $sampanas = $repo->findBy(["sokajy" => "fikambanana"]);
     $data['data'] = [];
 
     foreach ($sampanas as $key => $sampana) {
 
-        $action = $this->renderView('admin/sampana/common/button.html.twig', [
-            'sampana' => $sampana
+        $action = $this->renderView('admin/fikambanana/common/button.html.twig', [
+            'fikambanana' => $sampana
         ]);
 
         $data['data'][] = [
@@ -68,8 +68,8 @@ class SampanaController extends AbstractController
   }
 
   /**
- * @Route("/vaovao", name="sampana.vaovao")
- * @Route("/hanavao/{id}", name="sampana.hanavao")
+ * @Route("/vaovao", name="fikambanana.vaovao")
+ * @Route("/hanavao/{id}", name="fikambanana.hanavao")
  *
  * @return void
  */
@@ -80,8 +80,8 @@ class SampanaController extends AbstractController
     }
 
     $this->breadcrumbs->prependRouteItem("Fandraisana", "admin.index");
-    $this->breadcrumbs->addRouteItem("Sampana","sampana.lisitra");
-    $this->breadcrumbs->addItem("Sampana vaovao");
+    $this->breadcrumbs->addRouteItem("Fikambanana","fikambanana.lisitra");
+    $this->breadcrumbs->addItem("Fikambanana vaovao");
 
     $editMode = true;
 
@@ -103,23 +103,23 @@ class SampanaController extends AbstractController
           }
         }
 
-        $sampana->setSokajy("sampana");
+        $sampana->setSokajy("fikambanana");
 
         $manager->persist($sampana);
         $manager->flush();
 
 
         if ($editMode) {
-            $this->addFlash("success","Sampana voahitsy soa aman-tsara!");
+            $this->addFlash("success","Fikambanana voahitsy soa aman-tsara!");
         }else{
-            $this->addFlash("success","Sampana tafiditra soa aman-tsara!");
+            $this->addFlash("success","Fikambanana tafiditra soa aman-tsara!");
         }
 
-        return $this->redirectToRoute("sampana.lisitra.index");
+        return $this->redirectToRoute("fikambanana.lisitra.index");
     }
 
-    return $this->render("admin/sampana/_action.html.twig", [
-        'title' => "Hanampy sampana",
+    return $this->render("admin/fikambanana/_action.html.twig", [
+        'title' => "Hanampy fikambanana",
         "form" => $form->createView(),
         'editMode' => $editMode,
         'sampana' => $sampana
@@ -127,7 +127,7 @@ class SampanaController extends AbstractController
   }
 
   /**
-  * @Route("/fafaina/{id}", name="sampana.fafaina", options={"expose" = true})
+  * @Route("/fafaina/{id}", name="fikambanana.fafaina", options={"expose" = true})
   */
   public function delete(Sampana $sampana, EntityManagerInterface $manager){
     if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {

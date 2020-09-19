@@ -40,6 +40,11 @@ class Sampana
      */
     private $sampanaKristianas;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $sokajy;
+
     public function __construct()
     {
         $this->toeranas = new ArrayCollection();
@@ -130,6 +135,18 @@ class Sampana
                 $sampanaKristiana->setSampana(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSokajy(): ?string
+    {
+        return $this->sokajy;
+    }
+
+    public function setSokajy(string $sokajy): self
+    {
+        $this->sokajy = $sokajy;
 
         return $this;
     }
