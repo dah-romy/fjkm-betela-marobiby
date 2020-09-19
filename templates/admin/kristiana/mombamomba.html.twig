@@ -1,5 +1,10 @@
 {% extends "admin/base.html.twig" %}
 
+{% block title %}
+<title>Mombamomba | FJKM Betela Marobiby</title>
+{% endblock %}
+
+
 {% block sidebar %}
 {% if app.request.get('page') == "mpandray" %}
 {% include "admin/common/left-sidebar.html.twig" with { active: "kristiana", _active: 'mpandray' } %}
